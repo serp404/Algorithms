@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 template<typename T>
 void insertion_sort(std::vector<T>& array, bool ascending=true) {
@@ -7,20 +8,14 @@ void insertion_sort(std::vector<T>& array, bool ascending=true) {
         for (size_t i = 1; i != array.size(); ++i) {
             auto temp = array[i];
             int j = i - 1;
-            if (ascending) {
-                while (j >= 0 && array[j] > temp) {
-                    array[j + 1] = array[j];
-                    --j;
-                }
-                array[j + 1] = temp;
-            } else {
-                while (j >= 0 && array[j] < temp) {
-                    array[j + 1] = array[j];
-                    --j;
-                }
-                array[j + 1] = temp;
+            while (j >= 0 && array[j] > temp) {
+                array[j + 1] = array[j];
+                --j;
             }
+            array[j + 1] = temp;
         }
+        if (!ascending)
+            std::reverse(array.begin(), array.end());
     }
 }
 
