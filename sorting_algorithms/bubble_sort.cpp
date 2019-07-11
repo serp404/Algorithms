@@ -1,21 +1,19 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 template<typename T>
 void bubble_sort(std::vector<T>& array, bool ascending=true) {
     size_t k = array.size();
     while (k != 0) {
         for (size_t i = 0; i != k - 1; ++i) {
-            if (ascending) {
-                if (array[i + 1] < array[i])
-                    std::swap(array[i], array[i + 1]);
-            } else {
-                if (array[i + 1] > array[i])
-                    std::swap(array[i], array[i + 1]);
-            }
+            if (array[i + 1] < array[i])
+                std::swap(array[i], array[i + 1]);
         }
         --k;
     }
+    if (!ascending)
+        std::reverse(array.begin(), array.end());
 }
 
 template<typename T>
