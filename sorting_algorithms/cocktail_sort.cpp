@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 template<typename T>
 void cocktail_sort(std::vector<T>& array, bool ascending=true) {
@@ -9,27 +10,19 @@ void cocktail_sort(std::vector<T>& array, bool ascending=true) {
 
         while (left <= right) {
             for (size_t i = left; i < right; ++i) {
-                if (ascending) {
-                    if (array[i] > array[i + 1])
-                        std::swap(array[i], array[i + 1]);
-                } else {
-                    if (array[i] < array[i + 1])
-                        std::swap(array[i], array[i + 1]);
-                }
+                if (array[i] > array[i + 1])
+                    std::swap(array[i], array[i + 1]);
             }
             --right;
 
             for (size_t i = right; i > left; --i) {
-                if (ascending) {
-                    if (array[i - 1] > array[i])
-                        std::swap(array[i], array[i - 1]);
-                } else {
-                    if (array[i - 1] < array[i])
-                        std::swap(array[i], array[i - 1]);
-                }
+                if (array[i - 1] > array[i])
+                    std::swap(array[i], array[i - 1]);
             }
             ++left;
         }
+        if (!ascending)
+            std::reverse(array.begin(), array.end());
     }
 }
 
