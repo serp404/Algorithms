@@ -1,23 +1,18 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 template <typename T>
 void gnome_sort(std::vector<T>& array, bool ascending=true) {
     for (std::size_t i = 0; i + 1 < array.size(); ++i) {
-        if (ascending) {
-            if (array[i] > array[i + 1]) {
-                std::swap(array[i], array[i + 1]);
-                if (i != 0)
-                    i -= 2;
-            }
-        } else {
-            if (array[i] < array[i + 1]) {
-                std::swap(array[i], array[i + 1]);
-                if (i != 0)
-                    i -= 2;
-            }
+        if (array[i] > array[i + 1]) {
+            std::swap(array[i], array[i + 1]);
+            if (i != 0)
+                i -= 2;
         }
     }
+    if (!ascending)
+        std::reverse(array.begin(), array.end());
 }
 
 template<typename T>
