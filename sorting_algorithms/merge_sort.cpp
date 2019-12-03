@@ -19,7 +19,7 @@ std::vector<T> merge(const std::vector<T>& a1, const std::vector<T>& a2) {
             for (size_t i = i1; i != n1; ++i)
                 ans.push_back(a1[i]);
             return ans;
-        } else if (a1[i1] < a2[i2]) {
+        } else if (a1[i1] <= a2[i2]) {
             ans.push_back(a1[i1]);
             ++i1;
         } else {
